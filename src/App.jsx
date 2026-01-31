@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Login from "./login";
+import Profile from "./profile";
 
 // Job data
 const jobs = [
@@ -96,38 +97,6 @@ function FilterBar({ filters, setFilters }) {
   );
 }
 
-function Profile({ user, likedJobsData, onLogout }) {
-  return (
-    <div className="profile-page p-8 max-w-4xl mx-auto">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">{user}'s Profile</h2>
-        <button
-          onClick={onLogout}
-          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-        >
-          Logout
-        </button>
-      </div>
-
-      <h3 className="text-xl font-semibold mb-4">Liked Jobs</h3>
-      {likedJobsData.length === 0 ? (
-        <p className="text-gray-500">You haven't liked any jobs yet.</p>
-      ) : (
-        <ul className="grid gap-4 md:grid-cols-2">
-          {likedJobsData.map((job) => (
-            <li key={job.id} className="border p-4 rounded shadow-md">
-              <h4 className="font-bold">{job.role}</h4>
-              <p>{job.salary} • {job.experienceLevel}</p>
-              <p>{job.location}</p>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
-
-
 
 function App() {
   const [filters, setFilters] = useState({
@@ -167,28 +136,36 @@ function App() {
   }
 
   if (viewProfile) {
-    const likedJobsData = jobs.filter((job) => likedJobs.includes(job.id));
-    return <Profile user={user} likedJobsData={likedJobsData} onLogout={handleLogout} />;
-  }
+  const likedJobsData = jobs.filter((job) => likedJobs.includes(job.id));
+  return (
+    <Profile
+      user={user}
+      likedJobsData={likedJobsData}
+      onLogout={handleLogout}
+      onBack={() => setViewProfile(false)} // <-- go back to main page
+    />
+  );
+}
+
 
   return (
-    <div className="app p-8 max-w-4xl mx-auto">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">BRIDGE</h1>
-        <div className="flex gap-4">
-          <button
-            onClick={() => setViewProfile(true)}
-            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-          >
-            Profile
-          </button>
-          <button
-            onClick={handleLogout}
-            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-          >
-            Logout
-          </button>
-        </div>
+    <div className="app p-8 max-w-4xl mx-auto relative">
+      <h1 className="text-3xl font-bold mb-6">BRIDGE</h1>
+
+      {/* Fixed top-right buttons */}
+      <div className="top-right-buttons">
+        <button
+          onClick={() => setViewProfile(true)}
+          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+        >
+          Profile
+        </button>
+        <button
+          onClick={handleLogout}
+          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+        >
+          Logout
+        </button>
       </div>
 
       <FilterBar filters={filters} setFilters={setFilters} />

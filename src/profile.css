@@ -1,0 +1,81 @@
+.profile-page {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 32px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  font-family: Arial, sans-serif;
+}
+
+/* Container for top-left Back and top-right Logout */
+.profile-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px; /* Space between buttons and profile heading */
+}
+
+/* Back button */
+.profile-back-btn {
+  background-color: black;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.profile-back-btn:hover {
+  background-color: #555;
+  transform: scale(1.03);
+}
+
+/* Logout button */
+.profile-logout-btn {
+  background-color: black;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.profile-logout-btn:hover {
+  background-color: #555;
+  transform: scale(1.03);
+}
+
+/* Profile heading below buttons */
+.profile-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+/* Liked Jobs styling */
+.liked-jobs {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.liked-job-card {
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.liked-job-card h4 {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.liked-job-card p {
+  margin: 4px 0;
+  color: #555;
+}
